@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite guice-stage="DEVELOPMENT" name="Default suite">
+  <test thread-count="5" verbose="2" name="Trello">
+    <classes>
+      <class name="rootpath.SettingRootpath"/>
+      <class name="getRequests.DifferntFormatofTests"/>
+      <class name="getRequests.GetBoardFromTrello"/>
+    </classes>
+  </test> <!-- Default test -->
+   <test thread-count="5" verbose="2" name="Git Hub">
+    <classes>
+      <class name="hamcrest.MoreValidationUsingHamcrest"/>
+      <class name="hamcrest.SoftAsserts"/>
+    </classes>
+  </test> <!-- Default test -->
+   <test thread-count="5" verbose="2" name="Git Hub2">
+    <classes>
+      <class name="postRequest.CreateRepository"/>
+    </classes>
+  </test> <!-- Default test -->
+  
+  
+</suite> <!-- Default suite -->

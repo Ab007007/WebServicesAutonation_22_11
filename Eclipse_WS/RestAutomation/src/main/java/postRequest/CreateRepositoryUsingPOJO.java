@@ -7,10 +7,13 @@ import org.testng.annotations.Test;
 
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
+import pojo.GitRepoPOJO;
 
-public class CreateRepository {
+public class CreateRepositoryUsingPOJO {
+	
 	private String myProject;
 	private String barrierToken;
+	
 	
 	@BeforeMethod
 	public void setup() {
@@ -21,15 +24,15 @@ public class CreateRepository {
 	}
 	@Test(priority = 1)
 	public void createRepository() {
+		GitRepoPOJO gitObj = new GitRepoPOJO();
+		gitObj.setName(myProject);
+		gitObj.setDesc(myProject+"_Desc");
 		
 		RestAssured.
 			given().
 				headers("Authorization",barrierToken).
 				headers("Content-Type","application/json").
-				body("{\r\n" + 
-						"    \"name\" : \""+ myProject +"\",\r\n" + 
-						"    \"description\" : \"MyAPICreatedRepo_23_11_Desc\"\r\n" + 
-						"}").
+				body(gitObj).
 			when().	
 				post("/user/repos").
 			then().
@@ -38,30 +41,6 @@ public class CreateRepository {
 				body("name" , equalTo(myProject)).log().all();	
 	}
 
-	
-	@Test(priority = 2)
-	public void getReporitory() {
-		RestAssured.
-			given().
-				headers("Authorization",barrierToken).
-				headers("Content-Type","application/json").
-			when().
-				get("/repos/Ab007007/"+myProject).
-			then().
-				assertThat().statusCode(200).log().all();
-		
-	}
-	
-	
-	@Test(priority = 3)
-	public void deleteRepository() {
-		RestAssured.
-		given().
-			headers("Authorization",barrierToken).
-			headers("Content-Type","application/json").
-		when().
-			delete("/repos/Ab007007/"+myProject).
-		then().
-			assertThat().statusCode(204).log().all();
-	}
+
+
 }

@@ -12,7 +12,7 @@ import io.restassured.response.ValidatableResponse;
 import io.restassured.specification.RequestSpecification;
 import util.BaseClass;
 
-public class log extends BaseClass{
+public class Log extends BaseClass{
 
 	
 	
